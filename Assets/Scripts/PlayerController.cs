@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     private Rigidbody2D rb2d;
     public float speed;
     public float jumpForce;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         rb2d = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey("escape"))
+            Application.Quit();
+    }
 
     void FixedUpdate()
     {
@@ -25,12 +29,16 @@ public class PlayerController : MonoBehaviour {
         Vector2 movement = new Vector2(moveHorizontal, 0);
 
         rb2d.AddForce(movement * speed);
+
+
+
+
     }
 
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.collider.tag == "Ground")
+        if (collision.collider.tag == "Ground")
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
@@ -38,4 +46,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+
+
 }
